@@ -4,10 +4,14 @@
 # ex. input - "07:05:45PM"
 # ex. output - "19:05:45"
 
-s = "07:05:45PM"
+# s = "07:05:45PM"
+# s = "07:05:45AM"
+# s = "12:00:00AM"
+# s = "12:00:00PM"
 
 def change_time(s)
   array = []
+  new_array = []
 
   i = 0
   while i < s.length
@@ -16,77 +20,38 @@ def change_time(s)
   end
   # p array
 
-  if array[8] == "P"
+  if s == "12:00:00AM"
+    military_time = "00:00:00"
+  elsif s == "12:00:00PM"
+    military_time = "12:00:00"
+  elsif array[8] == "P"
     pm_i = (array[0] + array[1]).to_i
     pm_i += 12
     pm_s = pm_i.to_s
     # p pm_s
+    
+    i = 0
+    while i < pm_s.length
+      new_array << pm_s[i]
+      i += 1
+    end
+
+    j = 0
+    2.times do
+      array[j] = new_array[j]
+      array.pop
+      j += 1
+    end
+
+    military_time = array.join
   elsif array[8] == "A"
+    2.times do
+      array.pop
+    end
+
     military_time = array.join
   end
-
-  new_array = []
-  i = 0
-  while i < pm_s.length
-    new_array << pm_s[i]
-    i += 1
-  end
-  # p new_array
-
-  j = 0
-  2.times do 
-    array[j] = new_array[j]
-    array.pop
-    j += 1
-  end
-  # p array
-
-  military_time = array.join
   return military_time
 end
 
 p change_time(s)
-
-# array = ["1", "9", ":", "0", "5", ":", "4", "5", "P", "M"]
-# p array
-# array.pop
-# array.pop
-# p array
-
-# s = "07:05:45PM"
-# array = []
-
-# i = 0
-# while i < s.length
-#   array << s[i]
-#   i += 1
-# end
-# # p array
-
-# if array[8] == "P"
-#   pm_i = (array[0] + array[1]).to_i
-#   pm_i += 12
-#   pm_s = pm_i.to_s
-#   # p pm_s
-# elsif array[8] == "A"
-#   military_time = array.join
-# end
-
-# new_array = []
-# i = 0
-# while i < pm_s.length
-#   new_array << pm_s[i]
-#   i += 1
-# end
-# # p new_array
-
-# j = 0
-# 2.times do 
-#   array[j] = new_array[j]
-#   array.pop
-#   j += 1
-# end
-# # p array
-
-# military_time = array.join
-# p military_time
