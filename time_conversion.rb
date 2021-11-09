@@ -8,6 +8,8 @@
 # s = "07:05:45AM"
 # s = "12:00:00AM"
 # s = "12:00:00PM"
+# s = "12:00:01AM"
+s = "12:00:01PM"
 
 def change_time(s)
   array = []
@@ -20,10 +22,19 @@ def change_time(s)
   end
   # p array
 
-  if s == "12:00:00AM"
-    military_time = "00:00:00"
-  elsif s == "12:00:00PM"
-    military_time = "12:00:00"
+  if s[0] == "1" && s[1] == "2" && s[8] == "A"
+    i = 0
+    2.times do
+      array[i] = 0
+      array.pop
+      i += 1
+    end
+    military_time = array.join
+  elsif s[0] == "1" && s[1] == "2" && s[8] == "P"
+    2.times do
+      array.pop
+    end
+    military_time = array.join
   elsif array[8] == "P"
     pm_i = (array[0] + array[1]).to_i
     pm_i += 12
