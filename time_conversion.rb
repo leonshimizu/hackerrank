@@ -11,7 +11,7 @@
 # s = "12:00:01AM"
 s = "12:00:01PM"
 
-def change_time(s)
+def change_time(s) # works but not longer than needed - find ways to shorten
   array = []
   new_array = []
 
@@ -20,7 +20,6 @@ def change_time(s)
     array << s[i]
     i += 1
   end
-  # p array
 
   if s[0] == "1" && s[1] == "2" && s[8] == "A"
     i = 0
@@ -39,7 +38,6 @@ def change_time(s)
     pm_i = (array[0] + array[1]).to_i
     pm_i += 12
     pm_s = pm_i.to_s
-    # p pm_s
     
     i = 0
     while i < pm_s.length
@@ -59,7 +57,6 @@ def change_time(s)
     2.times do
       array.pop
     end
-
     military_time = array.join
   end
   return military_time
